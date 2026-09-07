@@ -6,7 +6,7 @@ test('Admin can configure OpenAI settings with multi-instance support', async ({
 
     // 1. Login as Admin
     await page.goto('/login');
-    await page.locator('input[name="email"]').fill('admin@localhost');
+    await page.locator('input[name="email"]').fill('admin');
     await page.locator('input[name="password"]').fill('123456');
     await page.locator('button[type="submit"]').click();
 

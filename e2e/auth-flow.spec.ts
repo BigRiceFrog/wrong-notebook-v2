@@ -81,7 +81,7 @@ test.describe('Authentication Flow', () => {
         await page.waitForURL('**/login');
 
         // --- Login as Admin ---
-        await page.locator('input[name="email"]').fill('admin@localhost');
+        await page.locator('input[name="email"]').fill('admin');
         await page.locator('input[name="password"]').fill('123456');
         await page.locator('button[type="submit"]').click();
 
