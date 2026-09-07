@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  wrong-notebook:
+    image: ghcr.io/bigricefrog/wrong-notebook:latest
+    container_name: wrong-notebook
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      # NEXTAUTH_URL 根据实际情况设置你的信息
+      #- NEXTAUTH_URL=http://your_domain_name:3000
+      - NEXTAUTH_SECRET=your_secret_key
+      # 管理员密码（可选）：设置后覆盖默认管理员密码。留空则使用默认密码 123456
+      # 默认管理员登录名：admin（不带邮箱，直接输入 admin 即可）
+      #- PASSWORD=your_admin_password
+    volumes:
+      # Persist the SQLite database
+      - ./data:/app/data
+      - ./config:/app/config
+
