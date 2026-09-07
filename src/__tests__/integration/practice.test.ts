@@ -151,7 +151,8 @@ describe('/api/practice', () => {
                 expect.any(Array),
                 'zh',
                 'medium', // 默认难度
-                undefined
+                undefined,
+                undefined // geometryData
             );
         });
 
@@ -199,7 +200,8 @@ describe('/api/practice', () => {
                 ['一元一次方程', '移项'], // 解析后的标签数组
                 'zh',
                 'medium',
-                undefined
+                undefined,
+                undefined // geometryData
             );
         });
 
@@ -234,7 +236,8 @@ describe('/api/practice', () => {
                 [], // 空数组
                 'zh',
                 'medium',
-                undefined
+                undefined,
+                undefined // geometryData
             );
         });
 
