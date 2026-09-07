@@ -20,11 +20,11 @@ describe('seed-admin docker helper', () => {
 
         const result = await seedAdmin({ prisma, hash });
 
-        expect(result).toEqual({ action: 'created', email: 'admin@localhost' });
+        expect(result).toEqual({ action: 'created', email: 'admin' });
         expect(hash).toHaveBeenCalledWith('123456', 12);
         expect(prisma.user.create).toHaveBeenCalledWith({
             data: {
-                email: 'admin@localhost',
+                email: 'admin',
                 password: 'hashed-password',
                 name: 'Admin',
                 role: 'admin',
@@ -49,11 +49,11 @@ describe('seed-admin docker helper', () => {
 
         const result = await seedAdmin({ prisma, hash });
 
-        expect(result).toEqual({ action: 'updated', email: 'admin@localhost' });
+        expect(result).toEqual({ action: 'updated', email: 'admin' });
         expect(hash).not.toHaveBeenCalled();
         expect(prisma.user.create).not.toHaveBeenCalled();
         expect(prisma.user.update).toHaveBeenCalledWith({
-            where: { email: 'admin@localhost' },
+            where: { email: 'admin' },
             data: {
                 role: 'admin',
                 isActive: true,
@@ -76,9 +76,9 @@ describe('seed-admin docker helper', () => {
 
         const result = await seedAdmin({ prisma, hash });
 
-        expect(result).toEqual({ action: 'updated', email: 'admin@localhost' });
+        expect(result).toEqual({ action: 'updated', email: 'admin' });
         expect(prisma.user.update).toHaveBeenCalledWith({
-            where: { email: 'admin@localhost' },
+            where: { email: 'admin' },
             data: {
                 role: 'admin',
                 isActive: true,
@@ -107,9 +107,9 @@ describe('seed-admin docker helper', () => {
 
         const result = await seedAdmin({ prisma, hash });
 
-        expect(result).toEqual({ action: 'updated', email: 'admin@localhost' });
+        expect(result).toEqual({ action: 'updated', email: 'admin' });
         expect(prisma.user.update).toHaveBeenCalledWith({
-            where: { email: 'admin@localhost' },
+            where: { email: 'admin' },
             data: {
                 role: 'admin', // Should restore admin role
                 isActive: true,
@@ -138,9 +138,9 @@ describe('seed-admin docker helper', () => {
 
         const result = await seedAdmin({ prisma, hash });
 
-        expect(result).toEqual({ action: 'updated', email: 'admin@localhost' });
+        expect(result).toEqual({ action: 'updated', email: 'admin' });
         expect(prisma.user.update).toHaveBeenCalledWith({
-            where: { email: 'admin@localhost' },
+            where: { email: 'admin' },
             data: {
                 role: 'admin',
                 isActive: true, // Should reactivate account
@@ -169,9 +169,9 @@ describe('seed-admin docker helper', () => {
 
         const result = await seedAdmin({ prisma, hash });
 
-        expect(result).toEqual({ action: 'updated', email: 'admin@localhost' });
+        expect(result).toEqual({ action: 'updated', email: 'admin' });
         expect(prisma.user.update).toHaveBeenCalledWith({
-            where: { email: 'admin@localhost' },
+            where: { email: 'admin' },
             data: {
                 role: 'admin', // Restore admin role
                 isActive: true, // Reactivate account
