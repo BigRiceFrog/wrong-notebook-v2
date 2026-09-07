@@ -11,7 +11,7 @@ on:
 env:
   REGISTRY: ghcr.io
   # ghcr.io 要求仓库路径全小写，GitHub 登录名大小写不敏感，用全小写形式确保合法
-  IMAGE_NAME: bigricefrog/wrong-notebook
+  IMAGE_NAME: bigricefrog/wrong-notebook-v2
 
 jobs:
   build-and-push:

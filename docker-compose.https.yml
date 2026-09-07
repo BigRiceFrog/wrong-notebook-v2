@@ -20,8 +20,8 @@ version: '3'
 
 services:
   wrong-notebook:
-    image: ghcr.io/wttwins/wrong-notebook:latest
-    container_name: wrong-notebook
+    image: ghcr.io/bigricefrog/wrong-notebook-v2:latest
+    container_name: wrong-notebook-v2
     restart: always
     ports:
       - "80:3000"    # HTTP（可选）

@@ -2,8 +2,8 @@ version: '3'
 
 services:
   wrong-notebook:
-    image: ghcr.io/bigricefrog/wrong-notebook:latest
-    container_name: wrong-notebook
+    image: ghcr.io/bigricefrog/wrong-notebook-v2:latest
+    container_name: wrong-notebook-v2
     restart: always
     ports:
       - "3000:3000"
