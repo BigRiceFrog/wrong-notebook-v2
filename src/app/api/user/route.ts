@@ -79,7 +79,7 @@ export async function PATCH(req: Request) {
         if (email && email.trim()) {
             const trimmedEmail = email.trim();
             const isStandardEmail = /^[^\s@]+@[^\s@]+$/.test(trimmedEmail);
-            const isLocalAccount = /^[^\s@]+$/.test(trimmedEmail);
+            const isLocalAccount = /^[a-zA-Z0-9_]+$/.test(trimmedEmail);
 
             if (!isStandardEmail && !isLocalAccount) {
                 return badRequest("Invalid email format");
