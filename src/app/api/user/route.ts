@@ -70,13 +70,32 @@ export async function PATCH(req: Request) {
         }
 
         // 验证邮箱格式（如果提供了邮箱）
-        // 支持标准邮箱和本地邮箱（如 admin@localhost）
+        // 支持三种形式：
+        //   标准邮箱      user@example.com
+        //   本地邮箱      admin@localhost
+        //   本地账户名    admin（默认管理员，不带 @）
+        // 注意：旧版正则强制要求 @，导致默认管理员 admin 无法保存任何资料
+        // （含教育阶段），因为设置面板会回传当前邮箱。
         if (email && email.trim()) {
-            const emailRegex = /^[^\s@]+@[^\s@]+$/;
-            if (!emailRegex.test(email.trim())) {
+            const trimmedEmail = email.trim();
+            const isStandardEmail = /^[^\s@]+@[^\s@]+$/.test(trimmedEmail);
+            const isLocalAccount = /^[^\s@]+$/.test(trimmedEmail);
+
+            if (!isStandardEmail && !isLocalAccount) {
                 return badRequest("Invalid email format");
             }
-            updateData.email = email.trim();
+
+            // 邮箱未变更时直接跳过：既避免自撞唯一约束，也避免无谓写库
+            if (trimmedEmail !== session.user.email) {
+                const emailTaken = await prisma.user.findUnique({
+                    where: { email: trimmedEmail },
+                    select: { id: true },
+                });
+                if (emailTaken) {
+                    return badRequest("Email already in use");
+                }
+                updateData.email = trimmedEmail;
+            }
         }
 
         // 验证密码长度（如果提供了密码）

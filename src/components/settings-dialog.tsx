@@ -840,6 +840,11 @@ export function SettingsDialog() {
                                                 placeholder="******"
                                                 minLength={6}
                                                 className="pr-10"
+                                                // 阻止浏览器自动填充已保存密码：
+                                                // 否则用户只改教育阶段时，密码会被静默提交并覆盖，
+                                                // 导致下次登录报密码错误。
+                                                autoComplete="new-password"
+                                                name="new-password"
                                             />
                                             <Button
                                                 type="button"
@@ -868,6 +873,8 @@ export function SettingsDialog() {
                                                     placeholder="******"
                                                     minLength={6}
                                                     className="pr-10"
+                                                    autoComplete="new-password"
+                                                    name="confirm-password"
                                                 />
                                                 <Button
                                                     type="button"
